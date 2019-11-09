@@ -40,6 +40,9 @@ window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue';
 Vue.use(BootstrapVue)
 
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
+
 Vue.component('chat-message', require('./components/ChatMessage.vue').default);
 
 const app = new Vue({
