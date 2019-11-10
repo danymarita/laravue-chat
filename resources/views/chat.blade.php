@@ -15,7 +15,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container pt-4">
         <div class="row" id="app">
             <div class=" offset-4 col-4">
                 <li class="list-group-item active">Chat room</li>
@@ -23,10 +23,11 @@
                 karena valuenya ada dynamic. untuk syntax panjangnya adalah v-bind:data -->
                 <ul class="list-group" v-chat-scroll>
                     <chat-message 
-                    v-for="value in chat.message" 
+                    v-for="(value, index) in chat.message" 
                     :key="value.index"
                     :data="value"
-                    color="warning"></chat-message>
+                    :user="chat.user[index]"
+                    :color="chat.color[index]"></chat-message>
                 </ul>
                 <input type="text" 
                     name="" id="" 

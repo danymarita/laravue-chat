@@ -1,6 +1,19 @@
 window._ = require('lodash');
 
 /**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+try {
+    window.Popper = require('popper.js').default;
+    window.$ = window.jQuery = require('jquery');
+
+    require('bootstrap');
+} catch (e) {}
+
+/**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
@@ -24,41 +37,17 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo';
+import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
-
-window.Vue = require('vue');
-
-import BootstrapVue from 'bootstrap-vue';
-Vue.use(BootstrapVue)
-
-import VueChatScroll from 'vue-chat-scroll'
-Vue.use(VueChatScroll)
-
-Vue.component('chat-message', require('./components/ChatMessage.vue').default);
-
-const app = new Vue({
-    el: '#app',
-    data: {
-        message: '',
-        chat: {
-            message: []
-        }
-    },
-    methods: {
-        send(){
-            if(this.message.length > 0){
-                this.chat.message.push(this.message);
-                this.message = '';
-            }
-        }
-    }
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    // For production purpose, provide pusher key and cluster as environment variables
+    // key: process.env.MIX_PUSHER_APP_KEY,
+    // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    // Below is only for dev purpose
+    key: 'aacab566a58d4c2319de',
+    cluster: 'ap1',
+    encrypted: true
 });
