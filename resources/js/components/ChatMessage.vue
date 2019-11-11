@@ -1,6 +1,8 @@
 <template>
     <div>
-        <li class="list-group-item" :class="className">{{ data }}</li>
+        <li class="list-group-item" :class="className">{{ data }}
+            <span id="time">{{ time }}</span>
+        </li>
         <small class="badge float-right" :class="badgeClass">{{ user }}</small>
     </div>
 </template>
@@ -9,7 +11,8 @@
         props: [
             'color',
             'data',
-            'user'
+            'user',
+            'time'
         ],
         computed: {
             className(){
@@ -21,3 +24,11 @@
         }
     }
 </script>
+<style>
+    #time{
+        font-size: 9px;
+        margin-top: 10px;
+        color: black;
+    }
+</style>
+

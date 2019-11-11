@@ -17,8 +17,9 @@
 <body>
     <div class="container pt-4">
         <div class="row" id="app">
-            <div class=" offset-4 col-4">
-                <li class="list-group-item active">Chat room</li>
+            <div class="offset-4 col-4 offset-sm-1 col-sm-10">
+                <li class="list-group-item active">Chat room <span class="badge badge-danger badge-pill">@{{ numberOfUsers }}</span></li>
+                <div class="badge badge-pill badge-primary">@{{ typing }}</div>
                 <!-- :data dan color adalah sama2 props dari ChatMessage, tapi untuk data diberikan : didepannya
                 karena valuenya ada dynamic. untuk syntax panjangnya adalah v-bind:data -->
                 <ul class="list-group" v-chat-scroll>
@@ -27,7 +28,8 @@
                     :key="value.index"
                     :data="value"
                     :user="chat.user[index]"
-                    :color="chat.color[index]"></chat-message>
+                    :color="chat.color[index]"
+                    :time="chat.time[index]"></chat-message>
                 </ul>
                 <input type="text" 
                     name="" id="" 
@@ -39,5 +41,11 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        // Create global window object to get user name
+        window.Laravel = {!! json_encode([
+            'user_name' => Auth::user()->name
+        ]) !!};
+    </script>
 </body>
 </html>

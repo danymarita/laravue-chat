@@ -15,7 +15,6 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-// Always return true on authentication, just for dev
-Broadcast::channel('chat', function() {
-    return true;
+Broadcast::channel('chat', function($user) {
+    return ['name' => $user->name];
 });
